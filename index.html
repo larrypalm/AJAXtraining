@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AJAX övnings</title>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<button>Tryck här för att ladda AJAX!</button>
+
+	<script type="text/javascript">
+
+	//1. skapar ett XHR-objekt
+	var request = new XMLHttpRequest()
+
+	//2. XHR-handler,
+	var handler = function() {
+		 console.log("readyState " + request.readyState);
+	}
+
+	$(document).ready(function(){
+
+		$("button").click(function(){
+			request.onreadystatechange = handler;
+			request.open("GET","http://mardby.se/AJK15G/lorem_text.php");
+			request.send();
+		});
+
+	});
+
+	</script>
+</body>
+</html>
