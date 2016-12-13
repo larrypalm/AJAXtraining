@@ -7,30 +7,39 @@
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
+  <style type="text/css">
+  	th, td {
+  		border:1px solid black;
+  	}
+	</style>
 </head>
 <body>
+	<input type="text">
 	<button>Tryck här för att ladda AJAX!</button>
-	<ul></ul>
+	<table>
+		<tr><th>numberOfWords</th><th>responseText</th></tr>
+	</table>
 
 	<script type="text/javascript">
 
 	//1. skapar ett XHR-objekt
 	var request = new XMLHttpRequest()
-
+	var input = 0;
 	//2. XHR-handler,
 	var handler = function() {
 		 console.log("readyState " + request.readyState);
 		 console.log("status " + request.status);
 		 if(request.readyState===4 && request.status===200){
-			$("ul").append("<li>"+request.responseText+"</li>");
+			$("table").append("<tr><td>"+input+"</td><td>"+request.responseText+"</td></tr>");
 		 }
 	}
 
 	$(document).ready(function(){
 
 		$("button").click(function(){
+			input = $("input").val();
 			request.onreadystatechange = handler;
-			request.open("GET","http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=10");
+			request.open("GET","http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords="+input);
 			request.send();
 		});
 
