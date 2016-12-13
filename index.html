@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>AJAX övnings</title>
+	<title>AJAX övningar</title>
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -10,6 +10,7 @@
 </head>
 <body>
 	<button>Tryck här för att ladda AJAX!</button>
+	<div></div>
 
 	<script type="text/javascript">
 
@@ -19,6 +20,10 @@
 	//2. XHR-handler,
 	var handler = function() {
 		 console.log("readyState " + request.readyState);
+		 console.log("status " + request.status);
+		 if(request.readyState===4 && request.status===200){
+			$("div").append("<p>"+request.responseText+"</p>");
+		 }
 	}
 
 	$(document).ready(function(){
