@@ -10,7 +10,7 @@
 </head>
 <body>
 	<button>Tryck här för att ladda AJAX!</button>
-	<div></div>
+	<ul></ul>
 
 	<script type="text/javascript">
 
@@ -22,7 +22,7 @@
 		 console.log("readyState " + request.readyState);
 		 console.log("status " + request.status);
 		 if(request.readyState===4 && request.status===200){
-			$("div").append("<p>"+request.responseText+"</p>");
+			$("ul").append("<li>"+request.responseText+"</li>");
 		 }
 	}
 
@@ -30,7 +30,7 @@
 
 		$("button").click(function(){
 			request.onreadystatechange = handler;
-			request.open("GET","http://mardby.se/AJK15G/lorem_text.php");
+			request.open("GET","http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=10");
 			request.send();
 		});
 
